@@ -17,7 +17,7 @@ function EditUser() {
             const response = await fetch(`${apiURL}users/${id}`)
 
             if (!response.ok) {
-                throw new Error ("Erro ao carregar o usuário")
+                throw new Error ("Error loading user")
             }
 
             const data = await response.json()
@@ -45,7 +45,7 @@ function EditUser() {
             })
 
             if (!response.ok) {
-                throw new Error ("Erro ao atualizar o usuário")
+                throw new Error ("Error updating user")
             }
 
             navigate("/UserList")
@@ -53,16 +53,33 @@ function EditUser() {
             setError(error.message)
         }
     }
-
     useEffect(() => {
         fetchUser()
     }, [id])
 
-
     return (
 
         <div className={style.container}>
-            {loading && <p style={{color: 'orange'}}>Carregando</p>}
+            <nav className={style.navContainer}>
+                <ul className={style.ulNavContainer}>
+                    <li>
+                        <Link to='/'>
+                            <button className={style.link}>Home</button>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to='/CreateUser'>
+                            <button className={style.link}>Create User</button>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to='/UserList'>
+                            <button className={style.link}>See Users</button>
+                        </Link>
+                    </li>
+                </ul>          
+            </nav>
+            {loading && <p>Loading...</p>}
             {error && <p style={{color: 'red'}}>{error}</p>}
             <h1 className={style.title}>Edit user {user.name}</h1>
             <form onSubmit={handleUpdate} className={style.formContainer}>
@@ -79,13 +96,8 @@ function EditUser() {
                 </fieldset>
                 <button className={style.button} type="submit">Edit</button>
             </form>
-            <Link to='/UserList' >Ver usuarios</Link>
         </div>
-
-        
-      );
-        
+      ); 
 }
-
 
 export default EditUser

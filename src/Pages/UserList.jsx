@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { apiURL } from "../services/api"
 import { Link } from "react-router-dom"
+import style from './UserList.module.css'
 
 function UserList() {
 
@@ -16,14 +17,14 @@ function UserList() {
            })
 
            if (!response.ok) {
-            throw new Error (`Erro ao listar os usuarios: ${response.statusText}`)
+            throw new Error (`Error listing users: ${response.statusText}`)
            }
 
            const data = await response.json()
            setUsers(data)
            setIsLoading(false)
         } catch (error) {
-            setError("Falha ao carregar os usuários: ", error)
+            setError("Failed to load users: ", error)
         } finally {
             setIsLoading(false)
         }
@@ -39,12 +40,12 @@ function UserList() {
                 })
 
                 if (!response.ok) {
-                    throw new Error (`Erro ao deletar usuário: ${response.statusText}`)
+                    throw new Error (`Error deleting user: ${response.statusText}`)
                 }
 
                 setUsers(users.filter(user => user.id !== userID))
             }   catch (error) {
-                setError("Falha ao deletar o usuário: ", error)
+                setError("Error deleting user: ", error)
             }
         }
             
@@ -53,30 +54,45 @@ function UserList() {
     useEffect(() => {
         handleListUser()
     }, [])
-
     
-
     return (
-        <>
-            {isLoading && <p style={{color: 'orange'}}>Loading</p>}
-            {error && <p style={{color: 'red'}}>{error}</p>}
-            {users.length === 0 && !error && !isLoading && <p>Nenhum usuário encontrato</p>}
-            {users.map((user) => (
-                <ul>
-                    <li key={user.id}>
-                        <strong>Nome:</strong> {user.name} <br />
-                        <strong>Email:</strong> {user.email} <br />
-                        <strong>Telefone:</strong> {user.phone} 
+        <div className={style.container}>
+            <nav className={style.navContainer}>
+                <ul className={style.ulNavContainer}>
+                    <li>
+                        <Link to='/'>
+                            <button className={style.link}>Home</button>
+                        </Link>
                     </li>
-                    <Link to={`/EditUser/${user.id}`}>
-                        <button style={{backgroundColor: 'orange', color: 'white'}}>Edit</button>
-                    </Link>
-                    <button onClick={() => handleDeleteUser(user.id)} style={{backgroundColor: 'red', color: 'white'}}>Delete</button>
+                    <li>
+                        <Link to='/CreateUser'>
+                            <button className={style.link}>Create User</button>
+                        </Link>
+                    </li>
                 </ul>
-            )) }
-            <Link to='/CreateUser'>Criar usuario</Link> <br />
-            <Link to='/'>Home</Link>
-        </>
+            </nav>
+            {users.length > 0 && <h1 className={style.title}>See all users</h1>}
+            {isLoading && <p>Loading...</p>}
+            {error && <p style={{color: 'red'}}>{error}</p>}
+            {users.length === 0 && !error && !isLoading && <p>No users found</p>}
+            <div className={style.mapContainer}>
+                {users.map((user) => (
+                    <ul key={user.id} className={style.ulContainer}>
+                        <li className={style.liContainer}>
+                            <strong>Name:</strong> {user.name} <br />
+                            <strong>Email:</strong> {user.email} <br />
+                            <strong>Phone:</strong> {user.phone} 
+                        </li>
+                        <div className={style.buttonContainer}>
+                            <Link to={`/EditUser/${user.id}`}>
+                                <button className={style.button}>Edit</button>
+                            </Link>
+                            <button className={style.button} onClick={() => handleDeleteUser(user.id)} >Delete</button>
+                        </div>
+                    </ul>
+                ))}
+            </div>
+        </div>
     )
 }
 

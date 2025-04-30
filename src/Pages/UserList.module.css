@@ -1,0 +1,123 @@
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    max-width: 80%;
+    height: auto;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.navContainer {
+    margin: 0 auto;
+}
+
+.ulNavContainer {
+    margin: 1rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    list-style: none;
+}
+
+.link {
+    color: #fff;
+    font-size: 1rem;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.link:hover {
+    background-color: #086dda;
+    cursor: pointer;
+}
+
+.title {
+    width: fit-content;
+    margin: 0 auto;
+    font-size: 2.8rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    color: #333;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.title:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.mapContainer {
+    width: 100%;
+    height: 12rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.ulContainer {
+    width: 20%;
+    height: 100%;
+    list-style: none;
+    text-align: left;
+    padding: .5rem;
+    word-break: break-all;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.button {
+    margin-bottom: .5rem;
+    width: 80%;
+    color: #fff;
+    font-size: 1rem;
+    padding: .4rem 1rem;
+    background-color: #ffa500;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.button:nth-child(2) {
+    background-color: #ff0000;
+}
+
+.button:hover {
+    background-color: #da9007;
+    cursor: pointer;
+}
+
+.button:nth-child(2):hover {
+    background-color: #dd0808;
+    cursor: pointer;
+}
+
+@media(max-width: 768px) {
+    .ulContainer {
+        width: 45%;
+    }
+}
+
+@media(max-width: 500px) {
+    .ulContainer {
+        width: 100%;
+    }
+}

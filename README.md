@@ -1,7 +1,5 @@
 # User Manager
 
-> 🚧 This project is currently under development. 🚧
-
 This is a simple CRUD (Create, Read, Update, Delete) application built with React. It demonstrates how to manage users with basic functionalities, like adding, viewing, editing, and deleting users. The app uses \`useState\`, \`useEffect\`, \`React Router DOM\` for navigation, \`fetch\` to make API calls, and \`CSS Modules\` for styling.
 
 ## Technologies Used

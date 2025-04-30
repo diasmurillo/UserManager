@@ -7,11 +7,11 @@ function Home() {
         <h1 className={style.title}>Simple crud to learn</h1>
         <h2 className={style.subTitle}>Create new user</h2>
         <Link to='CreateUser'>
-          <button className={style.button}>Create user</button>
+          <button className={style.button}>Create User</button>
         </Link>
         <h2 className={style.subTitle}>See all users</h2>
         <Link to='UserList'>
-          <button className={style.button}>See users</button>
+          <button className={style.button}>See Users</button>
         </Link>
       </div>
       )

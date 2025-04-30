@@ -21,14 +21,13 @@ function CreateUser() {
                 body: JSON.stringify(newuser)
             })
             if (!response.ok) {
-                throw new Error(`Erro ao criar o usuario: ${response.statusText}`)
+                throw new Error(`Error creating user: ${response.statusText}`)
             }
 
             const data = await response.json()
-            console.log("success")
             return data
         } catch (error) {
-            console.error("Erro ao criar usuario:", error)
+            console.error("Error creating user:", error)
             return null
         }
     }
@@ -47,14 +46,33 @@ function CreateUser() {
         if (createdUser) {
             setSuccess(true)
             setError(null)
+            
+
+            setTimeout(() => {
+                setSuccess(false)
+            }, 1000)
         } else {
-            setError("Erro ao criar o usuario, tente novamente")
+            setError("Error creating user, try again")
             setSuccess(false)
         }
     }
 
     return (
         <div className={style.container}>
+            <nav className={style.navContainer}>
+                <ul className={style.ulNavContainer}>
+                    <li>
+                        <Link to='/'>
+                            <button className={style.link}>Home</button>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to='/UserList'>
+                            <button className={style.link}>See Users</button>
+                        </Link>
+                    </li>
+                </ul>              
+            </nav>
             <h1 className={style.title}>Create new user</h1>
             <form onSubmit={handleSubmit} className={style.formContainer}>
 
@@ -72,7 +90,7 @@ function CreateUser() {
                 {error && <p className={style.error}>{error}</p>}    
                 <button className={style.button} type="submit">Send</button>
             </form>
-            <Link to='/UserList' >Ver usuarios</Link>
+            
         </div>
     )
 }
